@@ -32,6 +32,7 @@ public class ListController {
         tableChoices.put("location", JobData.getAllLocations());
         tableChoices.put("positionType", JobData.getAllPositionTypes());
         tableChoices.put("coreCompetency", JobData.getAllCoreCompetency());
+        tableChoices.put("all", "All"); // shows all job fields
     }
 
     @GetMapping(value = "")
@@ -47,7 +48,9 @@ public class ListController {
     }
 
     @GetMapping(value = "jobs")
-    public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam(required = false) String value) {
+    public String listJobsByColumnAndValue(Model model,
+                                           @RequestParam String column,
+                                           @RequestParam(required = false) String value) {
         ArrayList<Job> jobs;
         if (column.equals("all")){
             jobs = JobData.findAll();
